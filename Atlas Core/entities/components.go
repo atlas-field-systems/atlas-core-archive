@@ -105,7 +105,7 @@ func (m *Module) applyComponents(ctx context.Context, c *writecommit.Commit, val
 	newQuantities := []string{}
 	sampleID := uuid.New()
 	q := storage.New(c.SQL)
-	processQuantity := func(name string, encoded []byte) (bool, error) {
+	processQuantity := func(name string, encoded []byte, measured bool) (bool, error) {
 		identity := report.Context.ProcessGeneration + "/" + report.Context.Sequence
 		if a.known {
 			identity = strconv.FormatUint(a.generation, 10) + "/" + strconv.FormatUint(a.sequence, 10)
@@ -130,8 +130,17 @@ func (m *Module) applyComponents(ctx context.Context, c *writecommit.Commit, val
 		if !errors.Is(err, sql.ErrNoRows) {
 			return false, err
 		}
-		if err = q.PutEvidence(ctx, storage.PutEvidenceParams{AssetID: id, Identity: identity, Quantity: name, Original: string(facts), SampleID: sampleID.String()}); err != nil {
+		// A clear is retained evidence, not a measurement. Keep its original
+		// facts for recovery conflicts without claiming a movement association.
+		movementID := ""
+		if measured {
+			movementID = sampleID.String()
+		}
+		if err = q.PutEvidence(ctx, storage.PutEvidenceParams{AssetID: id, Identity: identity, Quantity: name, Original: string(facts), SampleID: movementID}); err != nil {
 			return false, err
+		}
+		if !measured {
+			return false, nil
 		}
 		newQuantities = append(newQuantities, name)
 		return true, nil
@@ -143,7 +152,7 @@ func (m *Module) applyComponents(ctx context.Context, c *writecommit.Commit, val
 		if err != nil {
 			return false, err
 		}
-		capture, err := processQuantity("position", encoded)
+		capture, err := processQuantity("position", encoded, !patch.Position.IsNull())
 		if err != nil {
 			return false, err
 		}
@@ -171,7 +180,7 @@ func (m *Module) applyComponents(ctx context.Context, c *writecommit.Commit, val
 		if err != nil {
 			return false, err
 		}
-		capture, err := processQuantity("speed_mps", encoded)
+		capture, err := processQuantity("speed_mps", encoded, !patch.SpeedMps.IsNull())
 		if err != nil {
 			return false, err
 		}
@@ -199,7 +208,7 @@ func (m *Module) applyComponents(ctx context.Context, c *writecommit.Commit, val
 		if err != nil {
 			return false, err
 		}
-		capture, err := processQuantity("altitude", encoded)
+		capture, err := processQuantity("altitude", encoded, !patch.Altitude.IsNull())
 		if err != nil {
 			return false, err
 		}

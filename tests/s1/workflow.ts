@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readS1Config, runSDKWorkflow, localAction } from "../../examples/s1/workflow.js";
 import { runDirectWorkflow } from "./direct.js";
 import { runRecoveryWorkflow } from "./recovery.js";
+import { runTelemetryClearWorkflow } from "./telemetry-clear.js";
 
 const configPath = process.argv[process.argv.indexOf("--config") + 1];
 if (!process.argv.includes("--config") || !configPath) throw new Error("S1 workflow requires --config PATH");
@@ -13,5 +14,7 @@ assert.deepEqual(sdk, direct);
 console.log(
   "PASS real container SDK/direct Protocol: all 19 routes, independent outcomes, sparse history, cancellation and deletion",
 );
+await localAction(config, "reset");
+await runTelemetryClearWorkflow(config);
 await localAction(config, "reset");
 await runRecoveryWorkflow(config);
