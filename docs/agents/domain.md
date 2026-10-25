@@ -1,48 +1,23 @@
-# Domain documentation
+# Documentation guide
 
-Atlas uses one root [GLOSSARY.md](../../GLOSSARY.md), one [topic page](../topics/README.md) per area of behavior and shared [ADRs](../adr/README.md). Before exploring, planning, implementing or reviewing behavior, design or documentation, read the glossary, then use the table below to pick what else to read: read every authoritative home whose trigger matches the work, and update each one the change affects. Use the glossary's canonical terms and flag conflicts with accepted decisions explicitly.
+The canonical [documentation guide](../documentation.md) owns Atlas's document map and maintenance policy. Use it for all new reading pointers and edits. This reference page keeps established document links usable and defines no separate rules.
 
 ## Where information belongs
 
-| Information | Authoritative home | When to read or update it |
-| --- | --- | --- |
-| Domain terms | [GLOSSARY.md](../../GLOSSARY.md) | Defining or using Atlas vocabulary; keep definitions short and free of implementation details |
-| Users, workload and field assumptions | [Operating model](../architecture/operating-model.md) | Evaluating product scope or a proposed workflow |
-| Current behavior rules, their routes and SDK operations, and open questions for one area | [Topic pages](../topics/README.md) | Planning, implementing or reviewing behavior in that area, including its API and SDK behavior; each rule lives on exactly one page |
-| Repository boundaries and responsibility assignments | [System outline](../architecture/system-outline.md) | Assigning ownership or planning a module; candidate subsystems remain proposals |
-| Cross-cutting mechanisms and module collaboration | [System design](../architecture/system-design.md) | Changing Protocol, generators, module interfaces, storage ownership, shared infrastructure, write commits, retry identity, change publication or Dataset opening; read its linked decisions too |
-| Dataset lifecycle, retention and cleanup | [Dataset lifecycle](../topics/dataset-lifecycle.md) and [ADR-0015](../adr/0015-separate-start-stop-restart-and-reset.md) | Changing lifecycle, storage, logs or client synchronization |
-| Public routes and their effects | [Endpoint map](../api-endpoints.md) | Planning, implementing or reviewing API or SDK behavior, with the topic pages; behavior rules link to their topic page |
-| Component inventory and proposed storage mapping | [Component catalog](../data-components.md) | Adding a component or planning storage |
-| Required test evidence | [Testing strategy](../testing-strategy.md) | Planning, adding or reviewing tests for a behavior |
-| Accepted architectural tradeoffs | [ADRs](../adr/README.md) | Changing behavior governed by a decision; retain the context, decision, rationale and consequences, and link to the topic page for detailed rules |
-| Differences from Modernization | [Comparison register](../architecture/modernization-differences.md) | Recording or implementing an authorized behavior or design change from Atlas Modernization; update it as its introduction describes |
-| Dated decision history and user authorizations | [Decision log](../planning-reconciliation.md) | Recording a user decision; history only, never the authority for a current rule |
-| Historical evidence and alternatives | [Research index](../research/atlas-reassessment/README.md) | Evaluating a technology or revisiting a tradeoff |
-| Implementation specifications and assigned work | [GitHub Issues](issue-tracker.md) | An experiment or implementation slice is requested |
-
-ADRs govern the tradeoffs they record. Topic pages own the current rules that implement them. Architecture documents own cross-cutting mechanisms and the boundaries not covered by a topic page. Summaries and examples explain those rules; they do not establish competing versions. Research and the comparison register link to successor authority rather than defining it.
+Read [documentation ownership](../documentation.md#where-information-belongs).
 
 ## Decision authority
 
-The user chooses observable behavior; engineering selects internal mechanisms that preserve it. Applicable requirements remain binding until the user authorizes a change. Review suggestions, implementation difficulty and an agent's tradeoff explanation do not authorize a deviation. An agent cannot establish acceptance by editing the requirement, its tests or the record of a decision to match its implementation.
-
-Use existing user authorization without asking again. If a proposed change to an accepted requirement is outside that authorization, identify the affected requirement, the proposed change and its consequences, and obtain the user's decision before making the dependent change. Continue independent work within the authorized scope. Record the authorization with the decision in its authoritative home; proposals remain proposals until accepted.
+Read [decision authority](../documentation.md#decision-authority).
 
 ## Topic pages
 
-A topic page states the current rules for one area: what Atlas does, the routes and SDK operations that expose it, and what remains open. It starts with one line naming what it owns and links to its ADRs for rationale and to the testing strategy for evidence. It does not carry dates, review narrative or superseded rules; the decision log and the ADRs keep that history. Mark proposals and open questions where they occur. Other documents summarize a topic's rule in at most one sentence and link to the page.
+Read [topic-page requirements](../documentation.md#topic-pages).
 
 ## Recording changes
 
-Capture a resolved term in the glossary. Add an ADR sparingly, when a decision is hard to reverse, surprising without context and the result of a real tradeoff. Preserve superseded records and link to their replacements.
-
-Keep each rule in its authoritative home. Elsewhere, use a short explanation and a link rather than copying the full contract. When moving a rule, preserve its meaning and update incoming links. Mark unresolved choices where they occur; do not promote a research recommendation by copying it into an accepted section.
-
-Implementation specifications follow the issue-tracker convention. Research questions alone do not require tickets. Keep agent instructions focused on conditional reading pointers and the hard guardrails needed on every relevant change.
+Read [recording changes](../documentation.md#recording-changes).
 
 ## Documentation completion
 
-Before completing a decision or policy change, check affected glossary entries, topic pages, the endpoint map, architecture documents, testing requirements, agent instructions and references against the authoritative change. Update contradictions and broken references within the authorized scope. Identify unresolved conflicts explicitly; a change with unresolved contradictions is not complete. Verify that summaries and historical records point to current authority without turning proposals into accepted requirements.
-
-Report which consistency and reference checks were performed and any missing evidence. Documentation-only work must pass these checks; it does not require an unimplemented application test suite.
+Read [documentation completion](../documentation.md#documentation-completion).

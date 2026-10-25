@@ -5416,7 +5416,7 @@
             "format": "double",
             "minimum": 0,
             "nullable": true,
-            "description": "Optional compatibility metadata; not computed or used for S1 Contact or age decisions."
+            "description": "Optional nullable compatibility metadata. It does not establish freshness or an S1 uncertainty budget; deployment provides correct clocks."
           }
         },
         "required": [
@@ -5444,7 +5444,7 @@
             "format": "double",
             "minimum": 0,
             "nullable": true,
-            "description": "Optional compatibility metadata; not computed or used for S1 Contact or age decisions."
+            "description": "Optional nullable compatibility metadata. It does not establish freshness or an S1 uncertainty budget; deployment provides correct clocks."
           },
           "evidence_kind": {
             "type": "string",
