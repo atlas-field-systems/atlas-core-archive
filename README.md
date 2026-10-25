@@ -14,11 +14,11 @@ Atlas Core is a control plane for observing Entities, preserving operational dat
 
 ## Implementation status
 
-Atlas Core is being extracted and simplified from Atlas Modernization. The delivered foundation is the bounded [Slice 0 contract foundation](tests/contract/README.md), with a [focused Plugin bookkeeping component](Atlas%20Core/plugins/README.md). Its public Protocol has no operational routes. Operational Core/SDK workflows remain implementation work; accepted design and an open implementation PR are not evidence that a workflow has shipped.
+Atlas Core is being extracted and simplified from Atlas Modernization. It includes the [Slice 0 contract foundation](tests/contract/README.md), a [focused Plugin bookkeeping component](Atlas%20Core/plugins/README.md), and the [S1 direct-IP Move To workflow](tests/s1/README.md). S1 implements 19 operational routes, a TLS Core container, the HTTP-mode SDK, local lifecycle management and a retained simulator. [Deployment](deployment/README.md) describes the runnable local setup.
 
 The documentation includes the accepted S1 scope and [deployment-clock decision](docs/adr/0029-use-deployment-clocks-and-preserve-event-times.md). The [implementation sequence](docs/architecture/implementation-sequence.md) owns the delivery plan and remaining qualifications. The [testing strategy](docs/testing-strategy.md) distinguishes foundation, operational, independent-extension and field evidence.
 
-## Verify the foundation
+## Verify the implementation
 
 From the repository root:
 
@@ -26,7 +26,7 @@ From the repository root:
 python3 scripts/verify.py --bootstrap
 ```
 
-This runs the repository's required foundation checks. It does not establish unimplemented operational behavior, published compatibility, production capacity or physical Asset readiness. See [verification](docs/development/verification.md) for documentation-only changes, exact-revision evidence and the checks required for implementation work.
+This runs the required foundation, Plugin component and S1 checks, including real container lifecycle, SDK/direct Protocol parity and the offline CLI workflow. [S1 qualification](tests/s1/README.md) lists prerequisites and executable evidence. These checks establish no published compatibility, production capacity or physical Asset readiness. See [verification](docs/development/verification.md) for documentation-only changes, exact-revision evidence and the checks required for implementation work.
 
 ## Repository boundaries
 

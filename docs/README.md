@@ -41,6 +41,7 @@ Use this index to understand Atlas, find its contracts, or contribute a change. 
 | Deployment clocks and original event times | [Clock decision](adr/0029-use-deployment-clocks-and-preserve-event-times.md) |
 | Required workflows, failure scenarios and completion evidence | [Testing strategy](testing-strategy.md) |
 | Delivered foundation and per-ticket qualification | [Slice 0 coverage](../tests/contract/README.md) |
+| Runnable S1 Core, local CLI, SDK and retained simulator | [S1 qualification](../tests/s1/README.md) and [deployment](../deployment/README.md) |
 | Focused Plugin component and its qualification limits | [Plugin integration](../Atlas%20Core/plugins/README.md) |
 | Earlier executable generation research | [Toolchain proof](research/atlas-reassessment/13-protocol-toolchain-proof.md) |
 
