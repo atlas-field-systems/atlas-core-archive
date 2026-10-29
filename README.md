@@ -1,3 +1,5 @@
+> **Retired.** This repository is no longer maintained. Development moved to [atlas-field-systems/atlas-core](https://github.com/atlas-field-systems/atlas-core).
+
 # Atlas Core
 
 Atlas Core is a control plane for observing Entities, preserving operational data, and tasking Assets. This repository contains Core, Protocol and SDK work. The operator-facing Command Interface and Asset-side execution systems are separate consumers.
